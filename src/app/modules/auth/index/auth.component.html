@@ -1,0 +1,3 @@
+<button mat-button *ngIf="!user" (click)="signIn()">sign-in</button>
+<button mat-button *ngIf="user" (click)="signOut()">sign-out</button>
+<h1>{{user?.name}}</h1>

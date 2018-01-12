@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import {AuthModule} from './modules/auth/auth.module';
+import {routing} from './app.routing';
+import {MainAuthService} from './services/auth.service';
 
 
 @NgModule({
@@ -10,9 +13,16 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AuthModule,
+    routing
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    MainAuthService
+  ],
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class AppModule { }
