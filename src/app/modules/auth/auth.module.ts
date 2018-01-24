@@ -4,6 +4,9 @@ import { AuthComponent } from './index/auth.component';
 import {MaterialModule} from '../shared/material.module';
 import {routing} from './auth.routing';
 import {AuthServiceConfig, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
+import {SignUpComponent} from './sign-up/sign-up.component';
+import {SignInComponent} from './sign-in/sign-in.component';
+import {FormsModule} from '@angular/forms';
 
 const config = new AuthServiceConfig([{
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -15,9 +18,16 @@ const config = new AuthServiceConfig([{
     CommonModule,
     routing,
     MaterialModule,
-    SocialLoginModule.initialize(config)
+    SocialLoginModule.initialize(config),
+    FormsModule
   ],
-  declarations: [AuthComponent],
-  bootstrap: [AuthComponent]
+  declarations: [
+    AuthComponent,
+    SignUpComponent,
+    SignInComponent
+  ],
+  bootstrap: [
+    AuthComponent
+  ]
 })
 export class AuthModule { }
