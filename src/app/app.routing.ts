@@ -1,10 +1,10 @@
 import {Routes, RouterModule} from '@angular/router';
-import {AppComponent} from './app.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: AppComponent
+    pathMatch: 'full',
+    redirectTo: 'auth/sign-in',
   },
 ];
 

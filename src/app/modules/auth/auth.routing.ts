@@ -1,16 +1,34 @@
 import {Routes, RouterModule} from '@angular/router';
-import {AuthComponent} from './index/auth.component';
+import {SignUpComponent} from './sign-up/sign-up.component';
+import {SignInComponent} from './sign-in/sign-in.component';
+import {GuestLayoutComponent} from '../../layouts/guest-layout.component';
+import {GuestGuard} from '../../services/quards/guest.guard';
 
 export const routes: Routes = [
 
   {
-    path: 'auth/sign-in',
-    component: AuthComponent,
-    pathMatch: 'full',
-    // resolve: {
-    //   bootstrap: GuestBootstrapService
-    // }
-  },
+    path: 'auth',
+    children: [
+      {
+        path: 'sign-up',
+        component: GuestLayoutComponent,
+        children: [{
+          path: '',
+          component: SignUpComponent
+        }],
+        canActivate: [GuestGuard]
+      },
+      {
+        path: 'sign-in',
+        component: GuestLayoutComponent,
+        children: [{
+          path: '',
+          component: SignInComponent
+        }],
+        canActivate: [GuestGuard]
+      }
+    ]
+  }
 
 ];
 
