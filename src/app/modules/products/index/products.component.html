@@ -1,0 +1,12 @@
+<div *ngIf="products.length > 0; else noProducts">
+    <mat-card *ngFor="let product of products" class="prods">
+        <span>{{product.name}}</span>
+        <span>{{product.cost}} $</span>
+        <span>
+            <button mat-button (click)="addOrder(product.name, product.id)">add to order</button>
+        </span>
+    </mat-card>
+</div>
+<ng-template #noProducts>
+    <h4> There is no data yet.</h4>
+</ng-template>

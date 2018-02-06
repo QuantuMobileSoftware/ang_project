@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {AuthService} from '../services/auth.service';
 
 @Component({
     selector: 'app-guest-layout',
@@ -7,7 +6,7 @@ import {AuthService} from '../services/auth.service';
     styleUrls: ['./guest-layout.component.scss']
 })
 export class GuestLayoutComponent {
-    constructor(public authService: AuthService) {
+    constructor() {
     }
 
 }

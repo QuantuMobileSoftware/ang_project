@@ -10,8 +10,7 @@ export class AuthUserGuard implements CanActivate {
                  private authService: AuthService) {}
 
     canActivate (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
-      console.log('here');
-      if (!this.authService.islogin) {
+      if (!this.authService.authToken || this.authService.authToken === '') {
         this.router.navigate(['/auth', 'sign-in']);
         return false;
       }

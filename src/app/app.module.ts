@@ -12,22 +12,29 @@ import {HttpClientModule} from '@angular/common/http';
 import {GuestLayoutComponent} from './layouts/guest-layout.component';
 import {AuthUserGuard} from './services/quards/auth-user.guard';
 import {GuestGuard} from './services/quards/guest.guard';
+import {ProductsModule} from './modules/products/products.module';
+import {UserLayoutComponent} from './layouts/user-layout.component';
+import {ProductsService} from './services/products.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GuestLayoutComponent
+    GuestLayoutComponent,
+    UserLayoutComponent
   ],
   imports: [
     BrowserModule,
-    AuthModule,
     routing,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+
+    AuthModule,
+    ProductsModule
   ],
   providers: [
     AuthService,
+    ProductsService,
     ServiceRequester,
     AuthUserGuard,
     GuestGuard

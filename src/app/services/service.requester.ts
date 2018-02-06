@@ -33,10 +33,7 @@ export class ServiceRequester {
                 return JSON.parse(response.body);
             })
             .catch((response: any) => {
-                // if (response.erre) {
-                //
-                // }
-              console.log('response', response)
+
                 return this.handleError(response);
             });
     }

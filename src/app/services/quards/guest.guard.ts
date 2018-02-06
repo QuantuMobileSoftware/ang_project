@@ -10,8 +10,7 @@ export class GuestGuard implements CanActivate {
                  private authService: AuthService) {}
 
     canActivate (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
-      console.log('guest', this.authService.islogin)
-      if (this.authService.islogin) {
+      if (this.authService.authToken) {
         this.router.navigate(['/products'])
         return false;
       }

@@ -1,0 +1,6 @@
+.prods {
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6em;
+}

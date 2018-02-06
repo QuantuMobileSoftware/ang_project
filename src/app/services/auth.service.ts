@@ -4,37 +4,32 @@ import {ServiceRequester} from './service.requester';
 @Injectable()
 export class AuthService {
 
-  constructor(public requester: ServiceRequester) { }
+  constructor(public requester: ServiceRequester) {
+    this.authToken = localStorage.getItem('auth_token');
+  }
   url = 'auth/';
-  islogin = false;
-  authToken: string;
-  username: string;
+  authToken = null;
 
   signUp(username, password) {
-    // return this.requester.httpPost(this.url + 'register', {username, password})
-    //   .then(user => {
-    //     if (user) {
-    //       this.islogin = true;
-    //     }
-    //   });
-
-    this.islogin = true;
-    // this.authToken = username + password;
-    // this.username = username;
+    return this.requester.httpPost(this.url + 'register', {username, password})
+      .then(user => {
+        this.authToken = user.data.token;
+        localStorage.setItem('auth_token', user.data.token);
+        return user.data;
+      });
   }
 
   signIn(username, password) {
     return this.requester.httpPost(this.url + 'login', {username, password})
       .then(token => {
-        if (token) {
-          console.log('token', token);
-          localStorage.setItem('auth_token', token);
-
-        }
+        this.authToken = token;
+        localStorage.setItem('auth_token', token);
+        return true;
       });
   }
 
-  getUser() {
-
+  signOut() {
+    this.authToken = null;
+    localStorage.setItem('auth_token', '');
   }
 }
