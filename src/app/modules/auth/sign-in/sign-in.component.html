@@ -1,11 +1,23 @@
-<form class="sign-form">
+<form class="sign-form" [formGroup]="singInForm" novalidate (ngSubmit)="signIn()">
+    <h1 *ngIf="errorMsg">{{errorMsg}}</h1>
     <mat-form-field>
-        <input matInput placeholder="user name" name="username" [(ngModel)]="user.username">
+        <input matInput placeholder="user name" formControlName="username">
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput placeholder="password" type="password" name="password"
-               [(ngModel)]="user.password">
+        <input matInput placeholder="password" type="password" formControlName="password">
     </mat-form-field>
-    <button mat-button (click)="signIn()">Sign-in</button>
+    <button mat-button>Sign-in</button>
 </form>
+
+<p appUnderline>
+    uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+</p>
+
+<p *appLoop="3">
+    Hello World!
+</p>
+
+<input matInput type="text" [ngModel]="phone | phoneFormat"
+       (ngModelChange)="phone=$event"
+       placeholder="Enter Phone Here..">

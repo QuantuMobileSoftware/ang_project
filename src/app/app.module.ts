@@ -15,6 +15,7 @@ import {GuestGuard} from './services/quards/guest.guard';
 import {ProductsModule} from './modules/products/products.module';
 import {UserLayoutComponent} from './layouts/user-layout.component';
 import {ProductsService} from './services/products.service';
+import {SharedModule} from './modules/shared/shared.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {ProductsService} from './services/products.service';
     routing,
     MaterialModule,
     HttpClientModule,
+    SharedModule,
 
     AuthModule,
     ProductsModule

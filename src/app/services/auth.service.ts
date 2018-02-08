@@ -22,9 +22,12 @@ export class AuthService {
   signIn(username, password) {
     return this.requester.httpPost(this.url + 'login', {username, password})
       .then(token => {
-        this.authToken = token;
-        localStorage.setItem('auth_token', token);
-        return true;
+        if (token.key) {
+          this.authToken = token.key;
+          localStorage.setItem('auth_token', token.key);
+          return true;
+        }
+        return false;
       });
   }
 

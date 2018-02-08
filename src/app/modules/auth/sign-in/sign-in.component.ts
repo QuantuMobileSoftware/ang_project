@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,25 +9,29 @@ import {Router} from '@angular/router';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-
-  user = {
-    username: '',
-    password: ''
-  };
+  singInForm: FormGroup;
+  phone: string;
+  errorMsg: string;
 
   constructor(private authService: AuthService,
               private router: Router) { }
 
   ngOnInit() {
-
+    this.singInForm = new FormGroup({
+      'username': new FormControl('', Validators.required),
+      'password': new FormControl('', Validators.required)
+    });
   }
 
   signIn() {
-    if (!this.user.username && !this.user.password) {
+    if (!this.singInForm.valid) {
+      this.errorMsg = 'aaaaaaaaaaaaaaaaaaaaa';
       return;
     }
 
-    return this.authService.signIn(this.user.username, this.user.password)
+    this.errorMsg = null;
+
+    return this.authService.signIn(this.singInForm.value.username, this.singInForm.value.password)
       .then(token => {
         if (token) {
           this.router.navigate(['/products']);
